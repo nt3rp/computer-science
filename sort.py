@@ -65,11 +65,20 @@ def selection_sort(items):
 
     return results
 
-def insertion_sort():
+def insertion_sort(items):
     """
     Starting with the second element, insert that element where it belongs.
 
     I.e. anything past the pivot is a new frontier to be moved into the
     'sorted' area
     """
-    pass
+
+    n = len(items)
+
+    for i in xrange(1, n):
+        j = i
+        while j > 0 and items[j-1] > items[j]:
+            items[j], items[j-1] = items[j-1], items[j]
+            j -= 1
+
+    return items
