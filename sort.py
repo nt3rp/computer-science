@@ -20,13 +20,30 @@ def quick_sort(items):
     return quick_sort(less) + [pivot] + quick_sort(greater)
 
 
-def merge_sort():
+def merge(left, right):
+    """ Nick is really bad at merging """
+    return quick_sort(left + right)
+
+
+def merge_sort(items):
     """
     Divide the set into two groups, until there are only two elements.
 
     Then, sort on the way up.
     """
-    pass
+    n = len(items)
+
+    # Base case
+    if n <= 1:
+        return items
+
+    # Split
+    mid = n / 2
+    left  = merge_sort(items[:mid])
+    right = merge_sort(items[mid:])
+
+    # Merge
+    return merge(left, right)
 
 def selection_sort():
     """
