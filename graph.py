@@ -26,3 +26,30 @@ def bfs(g, start):
             q.extend(g[v])
 
     return path
+
+def tbfs(g, start, proc=None):
+    from collections import defaultdict
+
+    if not proc:
+        proc = {}
+
+    state = defaultdict(unicode)
+    path = [start]
+    q = [start]
+    state[start] = 'discovered'
+
+    while q:
+        v = q.pop(0)
+
+        # process v
+
+        for adj in g[v]:
+            if not state[adj]:
+                state[adj] = 'discovered'
+
+                path.append(adj)
+                q.append(adj)
+
+        state[v] = 'processed'
+
+    return path
