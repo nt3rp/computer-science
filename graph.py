@@ -14,5 +14,15 @@ def dfs(g, start, path=None):
 
     return path
 
-def bfs():
-    pass
+def bfs(g, start):
+    path = []
+    q = [start]
+
+    while q:
+        v = q.pop(0)  # Equivalent to 'dequeue'
+
+        if not v in path:
+            path.append(v)
+            q.extend(g[v])
+
+    return path
