@@ -31,9 +31,11 @@ def tbfs(g, start, proc=None):
     if not proc:
         proc = {}
 
-    state = {}
-    path = [start]
-    q = [start]
+    state  = {}
+    parent = {}
+    path   = [start]
+    q      = [start]
+
     state[start] = 'discovered'
 
     while q:
@@ -43,11 +45,19 @@ def tbfs(g, start, proc=None):
 
         for adj in g[v]:
             if not state.get(adj):
-                state[adj] = 'discovered'
+                state[adj]  = 'discovered'
+                parent[adj] = v
 
                 path.append(adj)
                 q.append(adj)
 
         state[v] = 'processed'
 
-    return path
+    return path, parent
+
+def tfind_path(start, end, parents):
+    if (start == end) or (not end):
+        print start
+    else:
+        tfind_path(start, parents.get(end), parents)
+        print end
