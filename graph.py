@@ -28,12 +28,10 @@ def bfs(g, start):
     return path
 
 def tbfs(g, start, proc=None):
-    from collections import defaultdict
-
     if not proc:
         proc = {}
 
-    state = defaultdict(unicode)
+    state = {}
     path = [start]
     q = [start]
     state[start] = 'discovered'
@@ -44,7 +42,7 @@ def tbfs(g, start, proc=None):
         # process v
 
         for adj in g[v]:
-            if not state[adj]:
+            if not state.get(adj):
                 state[adj] = 'discovered'
 
                 path.append(adj)
