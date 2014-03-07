@@ -1,21 +1,18 @@
-class Edge(object):
-    def __init__(self, value, weight=1, child=None):
-        self.value = value
-        self.weight = weight
-        self.child = child
+def dfs(g, start, path=None):
+    """
+    Assume that graph is of the form of an adjacency list:
 
+    {'A': ['B', 'C'], 'B': ['A', 'C'], 'C': ['A', 'B', 'D', 'E'], 'D': ['C'], 'E': ['C'] }
+    """
+    if not path:
+        path = []
 
-class Graph(object):
-    def __init__(self, edges=None, directed=False):
-        self.edges = edges if edges else []
-        self.directed = directed
-        # degree[] # keep list of degre of each vertex?
-        # vertices? # num vertices
-        # edges?    # num edges
-        
+    path.append(start)
+    for v in g[start]:
+        if not v in path:
+            dfs(g, v, path)
 
-def dfs(g):
-    pass
+    return path
 
 def bfs():
     pass
